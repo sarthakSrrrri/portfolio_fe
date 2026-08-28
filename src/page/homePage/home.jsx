@@ -11,6 +11,20 @@ return ( <main className="home"> <section className="home-container"> <div class
         Hi, I'm <span>Sarthak Srivastava</span>
       </h1>
 
+      <div className="status-line">
+        <span className="status-dot"></span>
+        <span className="status-cycle">
+        <span>learning something I probably should have known earlier</span>
+
+        <span>looking through the data</span>
+        <span>trying to understand why this isn't working</span>
+        <span>going back to the basics</span>
+        <span>trying a different approach</span>
+        <span>reading the docs</span>
+        <span>testing things and seeing what happens</span>
+        </span>
+      </div>
+
       <h2 className="home-role">
         I work with data and AI.
       </h2>
