@@ -24,11 +24,12 @@
 }
 
 .triptrace-header h1 {
-  margin: 0;
+  margin: 0 0 10px;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .triptrace-header p {
@@ -234,7 +235,10 @@
 
 .trip-card,
 .decision-section,
-.result-panel {
+.result-panel,
+.model-panel,
+.distribution-panel,
+.anomaly-panel {
   position: relative;
   overflow: hidden;
   padding: 30px;
@@ -246,7 +250,10 @@
 
 .trip-card::before,
 .decision-section::before,
-.result-panel::before {
+.result-panel::before,
+.model-panel::before,
+.distribution-panel::before,
+.anomaly-panel::before {
   content: '';
   position: absolute;
   top: 0;
@@ -258,10 +265,98 @@
 
 .trip-card h2,
 .decision-section h2,
-.result-panel h2 {
+.result-panel h2,
+.model-panel h2,
+.distribution-panel h2,
+.anomaly-panel h2 {
   margin-top: 0;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
+}
+
+.techy-panel {
+  background-image:
+    radial-gradient(circle, rgba(96, 165, 250, 0.12) 1px, transparent 1px),
+    rgba(15, 23, 42, 0.5);
+  background-size: 18px 18px;
+  background-position: -4px -4px;
+}
+
+.model-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.compact-grid .metric {
+  padding: 12px 14px;
+}
+
+.compact-grid .metric span {
+  margin-bottom: 4px;
+  font-size: 0.68rem;
+}
+
+.compact-grid .metric strong {
+  font-size: 0.95rem;
+}
+
+.summary-grid {
+  margin-top: 20px;
+}
+
+.distribution-subtitle {
+  max-width: 620px;
+  margin: -8px 0 24px;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+.histogram-wrap {
+  overflow-x: auto;
+}
+
+.histogram-svg {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+  height: auto;
+}
+
+.hist-value {
+  fill: #f8fafc;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.hist-label {
+  fill: #94a3b8;
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.insight-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.insight-chip {
+  padding: 8px 16px;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.08);
+  color: #cbd5e1;
+  font-size: 0.85rem;
 }
 
 .trip-grid {
@@ -278,15 +373,81 @@
 }
 
 .metric span {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 8px;
   font-size: 0.75rem;
   color: #94a3b8;
 }
 
+.metric-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: #60a5fa;
+}
+
 .metric strong {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
   font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.integrity-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.integrity-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.integrity-label {
+  flex-shrink: 0;
+  width: 80px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.integrity-track {
+  flex: 1;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.1);
+  overflow: hidden;
+}
+
+.integrity-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.fill-raw {
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+}
+
+.fill-clean {
+  background: linear-gradient(90deg, #34d399, #10b981);
+}
+
+.fill-errors {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+}
+
+.integrity-value {
+  flex-shrink: 0;
+  width: 60px;
+  text-align: right;
+  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f8fafc;
 }
 
 .decision-section {
@@ -403,6 +564,10 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .model-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .score-card {
     width: 100%;
     box-sizing: border-box;
@@ -411,6 +576,10 @@
 
 @media (max-width: 500px) {
   .trip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .model-stats-grid {
     grid-template-columns: 1fr;
   }
 
