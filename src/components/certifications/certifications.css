@@ -1,0 +1,98 @@
+.certifications-section {
+position: relative;
+padding: 100px 8%;
+background: #080c14;
+}
+
+.certifications-container {
+max-width: 850px;
+margin: 0 auto;
+}
+
+.section-eyebrow {
+margin-bottom: 12px;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+color: #60a5fa;
+}
+
+.section-title {
+margin-bottom: 48px;
+font-size: clamp(1.7rem, 3vw, 2.2rem);
+color: #f8fafc;
+}
+
+.cert-list {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.cert-entry {
+display: flex;
+gap: 20px;
+padding: 28px;
+border: 1px solid rgba(96, 165, 250, 0.15);
+border-radius: 16px;
+background: rgba(15, 23, 42, 0.5);
+transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cert-entry:hover {
+transform: translateY(-4px);
+border-color: rgba(96, 165, 250, 0.4);
+box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.cert-icon {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 52px;
+height: 52px;
+border-radius: 12px;
+flex-shrink: 0;
+border: 1px solid rgba(148, 163, 184, 0.2);
+background: rgba(96, 165, 250, 0.1);
+color: #60a5fa;
+font-size: 1.4rem;
+font-weight: 700;
+}
+
+.cert-icon-aws {
+border-color: rgba(255, 153, 0, 0.3);
+background: #232f3e;
+color: #ff9900;
+font-size: 1.6rem;
+}
+
+.cert-body h4 {
+margin-bottom: 6px;
+font-size: 1rem;
+font-weight: 600;
+color: #e2e8f0;
+line-height: 1.4;
+}
+
+.cert-meta {
+font-size: 0.88rem;
+line-height: 1.6;
+color: #94a3b8;
+}
+
+@media (max-width: 600px) {
+.certifications-section {
+padding: 80px 6%;
+}
+
+.cert-entry {
+padding: 20px;
+}
+
+.cert-icon {
+width: 42px;
+height: 42px;
+font-size: 1.1rem;
+}
+}
