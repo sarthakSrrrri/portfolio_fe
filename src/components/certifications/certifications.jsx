@@ -7,12 +7,14 @@ const CERTIFICATIONS = [
     issuer: 'Amazon Web Services (AWS)',
     issued: 'Issued Jan 2026',
     Icon: FaAws,
+    brand: 'aws',
   },
   {
     title: 'Amazon Bedrock powered Agents with MCP Servers using the Strands Agents SDK',
     issuer: 'Amazon Web Services (AWS)',
     issued: 'Issued Jan 2026',
     Icon: FaAws,
+    brand: 'aws',
   },
   {
     title: 'Data Science | 6 Months Industry Live Training',
@@ -32,7 +34,7 @@ function Certifications() {
         <div className="cert-list">
           {CERTIFICATIONS.map((cert) => (
             <div className="cert-entry" key={cert.title}>
-              <div className="cert-icon">
+              <div className={`cert-icon${cert.brand === 'aws' ? ' cert-icon-aws' : ''}`}>
                 {cert.Icon ? <cert.Icon aria-hidden="true" /> : cert.initials}
               </div>
 
