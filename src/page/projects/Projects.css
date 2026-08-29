@@ -1,0 +1,36 @@
+.projects-page {
+min-height: 100vh;
+padding: 100px 8%;
+background: #080c14;
+}
+
+.projects-container {
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.projects-eyebrow {
+margin-bottom: 12px;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+color: #60a5fa;
+}
+
+.projects-title {
+margin-bottom: 48px;
+font-size: clamp(2rem, 4vw, 2.8rem);
+color: #f8fafc;
+}
+
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+gap: 24px;
+}
+
+@media (max-width: 600px) {
+.projects-page {
+padding: 80px 6%;
+}
+}
