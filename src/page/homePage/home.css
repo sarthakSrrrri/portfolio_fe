@@ -1,4 +1,5 @@
 .home {
+position: relative;
 min-height: 100vh;
 display: flex;
 align-items: center;
@@ -7,6 +8,40 @@ overflow-x: hidden;
 background:
 radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.12), transparent 30%),
 #080c14;
+}
+
+.home::after {
+content: '';
+position: fixed;
+inset: 0;
+z-index: 30;
+pointer-events: none;
+opacity: 0.12;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hosted-badge {
+position: fixed;
+right: 20px;
+bottom: 20px;
+z-index: 50;
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 6px 14px;
+border-radius: 999px;
+border: 1px solid rgba(96, 165, 250, 0.2);
+background: rgba(8, 12, 20, 0.75);
+backdrop-filter: blur(10px);
+font-size: 0.8rem;
+color: #64748b;
+white-space: nowrap;
+}
+
+.hosted-icon {
+width: 16px;
+height: 16px;
+color: #f6821f;
 }
 
 .home-container {
@@ -243,6 +278,58 @@ border: 1px solid #263244;
 border-radius: 999px;
 color: #94a3b8;
 font-size: 0.82rem;
+}
+
+.tech-marquee {
+position: relative;
+overflow: hidden;
+padding: 36px 0;
+background: #0a0f1a;
+border-top: 1px solid rgba(96, 165, 250, 0.1);
+mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+-webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.tech-track {
+display: flex;
+width: max-content;
+gap: 48px;
+animation: scrollTech 32s linear infinite;
+}
+
+.tech-marquee:hover .tech-track {
+animation-play-state: paused;
+}
+
+.tech-item {
+display: flex;
+align-items: center;
+gap: 10px;
+color: #94a3b8;
+font-size: 0.95rem;
+font-weight: 500;
+white-space: nowrap;
+}
+
+.tech-icon {
+width: 26px;
+height: 26px;
+flex-shrink: 0;
+}
+
+@keyframes scrollTech {
+from {
+transform: translateX(0);
+}
+to {
+transform: translateX(-50%);
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.tech-track {
+animation: none;
+}
 }
 
 .home-visual {
@@ -482,6 +569,20 @@ padding-top: 0;
 @media (max-width: 600px) {
 .home {
 padding: 80px 6%;
+}
+
+.hosted-badge {
+top: 16px;
+bottom: auto;
+right: 12px;
+padding: 4px 10px;
+gap: 6px;
+font-size: 0.68rem;
+}
+
+.hosted-icon {
+width: 13px;
+height: 13px;
 }
 
 .home-title {

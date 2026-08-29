@@ -1,0 +1,157 @@
+.experience-section {
+position: relative;
+padding: 100px 8%;
+background: #080c14;
+}
+
+.experience-container {
+position: relative;
+max-width: 850px;
+margin: 0 auto;
+}
+
+.section-eyebrow {
+margin-bottom: 12px;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+color: #60a5fa;
+}
+
+.section-title {
+margin-bottom: 48px;
+font-size: clamp(1.7rem, 3vw, 2.2rem);
+color: #f8fafc;
+}
+
+.experience-list {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.experience-entry {
+display: flex;
+gap: 20px;
+padding: 28px;
+border: 1px solid rgba(96, 165, 250, 0.15);
+border-radius: 16px;
+background: rgba(15, 23, 42, 0.5);
+transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.experience-entry:hover {
+transform: translateY(-4px);
+border-color: rgba(96, 165, 250, 0.4);
+box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.experience-logo {
+display: block;
+width: 52px;
+height: 52px;
+border-radius: 12px;
+overflow: hidden;
+flex-shrink: 0;
+border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.experience-logo img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+.experience-body {
+flex: 1;
+min-width: 0;
+}
+
+.experience-body h4 {
+margin-bottom: 2px;
+font-size: 1rem;
+font-weight: 600;
+color: #e2e8f0;
+}
+
+.experience-meta {
+font-size: 0.88rem;
+line-height: 1.6;
+color: #94a3b8;
+}
+
+.experience-company-header {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+justify-content: space-between;
+gap: 8px;
+margin-bottom: 20px;
+}
+
+.experience-company-link {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+font-size: 1.1rem;
+font-weight: 700;
+color: #f8fafc;
+text-decoration: none;
+transition: color 0.2s ease;
+}
+
+.experience-company-link:hover {
+color: #60a5fa;
+}
+
+.external-icon {
+width: 12px;
+height: 12px;
+opacity: 0.55;
+}
+
+.experience-roles {
+position: relative;
+display: flex;
+flex-direction: column;
+gap: 22px;
+padding-left: 20px;
+border-left: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.experience-roles.single {
+gap: 0;
+padding-left: 0;
+border-left: none;
+}
+
+.experience-role {
+position: relative;
+}
+
+.experience-roles:not(.single) .experience-role::before {
+content: '';
+position: absolute;
+top: 6px;
+left: -25px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #60a5fa;
+}
+
+@media (max-width: 600px) {
+.experience-section {
+padding: 80px 6%;
+}
+
+.experience-entry {
+padding: 20px;
+}
+
+.experience-logo {
+width: 42px;
+height: 42px;
+}
+}

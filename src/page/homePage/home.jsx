@@ -1,11 +1,41 @@
-import { FaLinkedinIn, FaGithub, FaMedium } from 'react-icons/fa'
+import { FaLinkedinIn, FaGithub, FaMedium, FaAws } from 'react-icons/fa'
+import {
+  SiCloudflare,
+  SiPython,
+  SiTensorflow,
+  SiPytorch,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+  SiJupyter,
+  SiApachespark,
+  SiDocker,
+  SiPostgresql,
+  SiHuggingface,
+} from 'react-icons/si'
+import Certifications from '../../components/certifications/certifications'
 import './home.css'
 
 const CLUSTER_MINI_A = [[18, 26], [32, 40], [14, 48], [36, 16]]
 const CLUSTER_MINI_B = [[86, 20], [100, 38], [76, 50], [104, 14]]
 
+const TECH_STACK = [
+  { name: 'Python', Icon: SiPython, color: '#4B8BBE' },
+  { name: 'TensorFlow', Icon: SiTensorflow, color: '#FF6F00' },
+  { name: 'PyTorch', Icon: SiPytorch, color: '#EE4C2C' },
+  { name: 'Scikit-learn', Icon: SiScikitlearn, color: '#F89939' },
+  { name: 'Pandas', Icon: SiPandas, color: '#8C7AE6' },
+  { name: 'NumPy', Icon: SiNumpy, color: '#4DABF7' },
+  { name: 'Jupyter', Icon: SiJupyter, color: '#F37626' },
+  { name: 'Apache Spark', Icon: SiApachespark, color: '#E25A1C' },
+  { name: 'AWS', Icon: FaAws, color: '#FF9900' },
+  { name: 'Docker', Icon: SiDocker, color: '#2496ED' },
+  { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
+  { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
+]
+
 function Home() {
-return ( <main className="home"> <section className="home-container"> <div className="home-content"> 
+return ( <> <main className="home"> <section className="home-container"> <div className="home-content">
 
       <h1 className="home-title">
         Hi, I'm <span>Sarthak Srivastava</span>
@@ -136,9 +166,26 @@ return ( <main className="home"> <section className="home-container"> <div class
       </div>
     </div>
   </section>
+
+  <p className="hosted-badge">
+    <SiCloudflare className="hosted-icon" aria-hidden="true" />
+    Hosted by Cloudflare
+  </p>
 </main>
 
+<section className="tech-marquee">
+  <div className="tech-track">
+    {[...TECH_STACK, ...TECH_STACK].map(({ name, Icon, color }, i) => (
+      <div className="tech-item" key={`${name}-${i}`}>
+        <Icon className="tech-icon" style={{ color }} aria-hidden="true" />
+        <span>{name}</span>
+      </div>
+    ))}
+  </div>
+</section>
 
+<Certifications />
+</>
 );
 }
 
