@@ -84,9 +84,6 @@ function TripTrace() {
 
       <header className="triptrace-header">
         <div>
-          <p className="triptrace-label">
-            ML ANOMALY INVESTIGATION
-          </p>
 
           <h1>
             Statistical Pattern Analysis &amp; Anomaly
@@ -94,18 +91,12 @@ function TripTrace() {
           </h1>
 
           <p>
-            An end-to-end analysis of 10.9M NYC taxi trips,
-            combining data cleaning, feature engineering,
-            statistical analysis, and Isolation Forest for
-            anomaly detection. It explores unusual trip
-            patterns, data errors, and suspicious records
-            through interactive visualizations and trip
-            investigation.
+project that analyzes 10.9 million NYC taxi trips to understand travel patterns, identify data quality problems, and detect unusual trips using statistical analysis and an Isolation Forest model.
           </p>
         </div>
 
         <div className="score-card">
-          <span>INVESTIGATION SCORE</span>
+          {/* <span>INVESTIGATION SCORE</span> */}
 
             <strong>
             {score.correct} correct / {score.total} attempts
@@ -113,111 +104,7 @@ function TripTrace() {
         </div>
       </header>
 
-      <RoadScene
-        distance={currentCase.trip_distance}
-        speed={currentCase.speed_mph}
-      />
-
       <main className="investigation-container">
-
-        <section className="model-panel techy-panel">
-          <h2>Behind the Model</h2>
-
-          <div className="model-stats-grid compact-grid">
-            <Metric label="Algorithm" value="Isolation Forest" />
-            <Metric label="Training Samples" value="500K" />
-            <Metric label="Input Features" value="7" />
-            <Metric label="Detected Anomaly Rate" value="~2%" />
-            <Metric label="Full Data Pipeline" value="10.9M trips" />
-          </div>
-        </section>
-
-        <section className="anomaly-panel techy-panel">
-          <h2>Data Anomaly Breakdown</h2>
-
-          <p className="distribution-subtitle">
-            Before training, every trip was screened for structural
-            errors — here's exactly what got flagged and filtered out.
-          </p>
-
-          <div className="anomaly-stats-grid compact-grid">
-            <Metric
-              Icon={FiMapPin}
-              label="Invalid Pickup Coordinates"
-              value="170,212"
-            />
-            <Metric
-              Icon={FiMapPin}
-              label="Invalid Dropoff Coordinates"
-              value="160,251"
-            />
-            <Metric
-              Icon={FiActivity}
-              label="Zero Distance"
-              value="64,065"
-            />
-            <Metric
-              Icon={FiDollarSign}
-              label="Negative Fare"
-              value="4,216"
-            />
-            <Metric
-              Icon={FiClock}
-              label="Zero Duration"
-              value="11,398"
-            />
-            <Metric
-              Icon={FiClock}
-              label="Negative Duration"
-              value="31"
-            />
-          </div>
-
-          <div className="integrity-bars">
-            <div className="integrity-row">
-              <span className="integrity-label">Raw Data</span>
-              <div className="integrity-track">
-                <div className="integrity-fill fill-raw" style={{ width: "100%" }} />
-              </div>
-              <span className="integrity-value">10.9M</span>
-            </div>
-
-            <div className="integrity-row">
-              <span className="integrity-label">Clean Data</span>
-              <div className="integrity-track">
-                <div className="integrity-fill fill-clean" style={{ width: "98.03%" }} />
-              </div>
-              <span className="integrity-value">10.69M</span>
-            </div>
-
-            <div className="integrity-row">
-              <span className="integrity-label">Errors</span>
-              <div className="integrity-track">
-                <div className="integrity-fill fill-errors" style={{ width: "1.97%" }} />
-              </div>
-              <span className="integrity-value">214K</span>
-            </div>
-          </div>
-
-          <div className="model-stats-grid compact-grid summary-grid">
-            <Metric label="Raw Trips" value="10.9M" />
-            <Metric label="Clean Trips" value="10.69M" />
-            <Metric label="Data Errors" value="214,623" />
-            <Metric label="Data Removed" value="~1.97%" />
-          </div>
-        </section>
-
-        <section className="distribution-panel">
-          <h2>Trip Distance Distribution</h2>
-
-          <p className="distribution-subtitle">
-            Most trips are short, and the distribution is heavily
-            right-skewed — a long tail of rare, extreme distances is
-            exactly where anomalies tend to hide.
-          </p>
-
-          <DistanceHistogram data={distanceDist} />
-        </section>
 
         <div className="case-header">
           <span>
@@ -231,7 +118,7 @@ function TripTrace() {
 
         <section className="trip-card">
 
-          <h2>Investigate this trip</h2>
+          <h2>Is This Trip Normal?</h2>
 
           <div className="trip-grid">
 
@@ -383,90 +270,107 @@ function TripTrace() {
 
         )}
 
+        <section className="model-panel techy-panel">
+          <h2>Behind the Model</h2>
+
+          <div className="model-stats-grid compact-grid">
+            <Metric label="Algorithm" value="Isolation Forest" />
+            <Metric label="Training Samples" value="500K" />
+            <Metric label="Input Features" value="7" />
+            <Metric label="Detected Anomaly Rate" value="~2%" />
+            <Metric label="Full Data Pipeline" value="10.9M trips" />
+          </div>
+        </section>
+
+        <section className="anomaly-panel techy-panel">
+          <h2>Data Anomaly Breakdown</h2>
+
+          <p className="distribution-subtitle">
+            Before training, every trip was screened for structural
+            errors here's exactly what got flagged and filtered out.
+          </p>
+
+          <div className="anomaly-stats-grid compact-grid">
+            <Metric
+              Icon={FiMapPin}
+              label="Invalid Pickup Coordinates"
+              value="170,212"
+            />
+            <Metric
+              Icon={FiMapPin}
+              label="Invalid Dropoff Coordinates"
+              value="160,251"
+            />
+            <Metric
+              Icon={FiActivity}
+              label="Zero Distance"
+              value="64,065"
+            />
+            <Metric
+              Icon={FiDollarSign}
+              label="Negative Fare"
+              value="4,216"
+            />
+            <Metric
+              Icon={FiClock}
+              label="Zero Duration"
+              value="11,398"
+            />
+            <Metric
+              Icon={FiClock}
+              label="Negative Duration"
+              value="31"
+            />
+          </div>
+
+          <div className="integrity-bars">
+            <div className="integrity-row">
+              <span className="integrity-label">Raw Data</span>
+              <div className="integrity-track">
+                <div className="integrity-fill fill-raw" style={{ width: "100%" }} />
+              </div>
+              <span className="integrity-value">10.9M</span>
+            </div>
+
+            <div className="integrity-row">
+              <span className="integrity-label">Clean Data</span>
+              <div className="integrity-track">
+                <div className="integrity-fill fill-clean" style={{ width: "98.03%" }} />
+              </div>
+              <span className="integrity-value">10.69M</span>
+            </div>
+
+            <div className="integrity-row">
+              <span className="integrity-label">Errors</span>
+              <div className="integrity-track">
+                <div className="integrity-fill fill-errors" style={{ width: "1.97%" }} />
+              </div>
+              <span className="integrity-value">214K</span>
+            </div>
+          </div>
+
+          <div className="model-stats-grid compact-grid summary-grid">
+            <Metric label="Raw Trips" value="10.9M" />
+            <Metric label="Clean Trips" value="10.69M" />
+            <Metric label="Data Errors" value="214,623" />
+            <Metric label="Data Removed" value="~1.97%" />
+          </div>
+        </section>
+
+        <section className="distribution-panel">
+          <h2>Trip Distance Distribution</h2>
+
+          <p className="distribution-subtitle">
+            Most trips are short, and the distribution is heavily
+            right skewed a long tail of rare, extreme distances is
+            exactly where anomalies tend to hide.
+          </p>
+
+          <DistanceHistogram data={distanceDist} />
+        </section>
+
       </main>
 
-    </div>
-  );
-}
-
-const ROAD_PATH = "M40,150 C260,40 420,170 640,80 S 960,160 1060,50";
-
-function RoadScene({ distance, speed }) {
-  const animationDuration = Math.max(
-    3,
-    Math.min(9, 9 - speed / 12)
-  );
-  return (
-    <div className="taxi-road" aria-hidden="true">
-      <svg className="road-svg" viewBox="0 0 1100 200">
-        <defs>
-          <linearGradient id="taxiBody" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ffe066" />
-            <stop offset="100%" stopColor="#f2a900" />
-          </linearGradient>
-          <linearGradient id="taxiWindow" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7dd3fc" />
-            <stop offset="100%" stopColor="#0f4c66" />
-          </linearGradient>
-        </defs>
-
-        <path id="roadPath" className="road-glow" d={ROAD_PATH} />
-        <path className="road-base" d={ROAD_PATH} />
-        <path className="road-line" d={ROAD_PATH} />
-
-        <g className="route-marker">
-          <circle cx="40" cy="150" r="7" />
-          <text x="40" y="176">PICKUP</text>
-        </g>
-
-        <g className="route-marker">
-          <circle cx="1060" cy="50" r="7" />
-          <text x="1060" y="30" textAnchor="end">DROPOFF</text>
-        </g>
-
-        <g className="route-info" transform="translate(550, 26)">
-          <rect x="-70" y="-20" width="140" height="30" rx="15" />
-          <text y="1">{distance} mi · {speed} mph</text>
-        </g>
-
-        <g className="taxi-mover">
-          <ellipse className="taxi-shadow" cx="0" cy="36" rx="30" ry="6" />
-
-          <g className="taxi-body">
-            <rect x="-78" y="-4" width="160" height="30" rx="9" fill="url(#taxiBody)" />
-            <path d="M-43,-4 L-23,-29 L42,-29 L57,-4 Z" fill="url(#taxiBody)" />
-            <path d="M-35,-7 L-20,-23 L35,-23 L50,-7 Z" fill="url(#taxiWindow)" />
-            <line x1="7" y1="-23" x2="7" y2="-7" stroke="#0b1620" strokeWidth="2" />
-            <rect x="-4" y="-36" width="20" height="7" rx="2" fill="#111827" />
-            <rect x="-78" y="9" width="16" height="6" fill="#111827" />
-            <rect x="-46" y="9" width="16" height="6" fill="#111827" />
-            <rect x="-14" y="9" width="16" height="6" fill="#111827" />
-            <rect x="18" y="9" width="16" height="6" fill="#111827" />
-            <rect x="50" y="9" width="16" height="6" fill="#111827" />
-            <rect x="-82" y="14" width="12" height="8" rx="2" fill="#2b2f36" />
-            <rect x="54" y="14" width="12" height="8" rx="2" fill="#2b2f36" />
-            <circle cx="64" cy="4" r="4" fill="#fff9c4" />
-            <circle cx="-74" cy="4" r="4" fill="#ef4444" />
-
-            <g className="taxi-wheel" style={{ transformOrigin: '-43px 28px' }}>
-              <circle cx="-43" cy="28" r="13" fill="#111827" />
-              <circle cx="-43" cy="28" r="5" fill="#6b7280" />
-            </g>
-            <g className="taxi-wheel" style={{ transformOrigin: '47px 28px' }}>
-              <circle cx="47" cy="28" r="13" fill="#111827" />
-              <circle cx="47" cy="28" r="5" fill="#6b7280" />
-            </g>
-          </g>
-
-                <animateMotion
-                    dur={`${animationDuration}s`}
-                    repeatCount="indefinite"
-                    rotate="auto"
-                >
-                    <mpath href="#roadPath" />
-                </animateMotion>
-        </g>
-      </svg>
     </div>
   );
 }

@@ -1,0 +1,87 @@
+.hosted-badge {
+position: fixed;
+right: 20px;
+bottom: 20px;
+z-index: 999;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 18px;
+border-radius: 999px;
+border: 1px solid transparent;
+background:
+linear-gradient(rgba(8, 12, 20, 0.85), rgba(8, 12, 20, 0.85)) padding-box,
+linear-gradient(120deg, rgba(96, 165, 250, 0.55), rgba(167, 139, 250, 0.55)) border-box;
+backdrop-filter: blur(14px);
+box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+font-family: "DM Sans", sans-serif;
+font-size: 0.78rem;
+font-weight: 500;
+color: #cbd5e1;
+white-space: nowrap;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hosted-badge:hover {
+transform: translateY(-3px);
+box-shadow: 0 16px 34px rgba(0, 0, 0, 0.5);
+}
+
+.hosted-item {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+}
+
+.hosted-divider {
+width: 3px;
+height: 3px;
+border-radius: 50%;
+background: rgba(148, 163, 184, 0.5);
+flex-shrink: 0;
+}
+
+.hosted-icon {
+width: 16px;
+height: 16px;
+flex-shrink: 0;
+}
+
+.hosted-icon-cf {
+color: #f6821f;
+filter: drop-shadow(0 0 6px rgba(246, 130, 31, 0.5));
+}
+
+.hosted-icon-react {
+color: #61dafb;
+filter: drop-shadow(0 0 6px rgba(97, 218, 251, 0.5));
+animation: hostedReactSpin 6s linear infinite;
+}
+
+@keyframes hostedReactSpin {
+to {
+transform: rotate(360deg);
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.hosted-icon-react {
+animation: none;
+}
+}
+
+@media (max-width: 600px) {
+.hosted-badge {
+top: 16px;
+bottom: auto;
+right: 12px;
+padding: 5px 12px;
+gap: 6px;
+font-size: 0.68rem;
+}
+
+.hosted-icon {
+width: 14px;
+height: 14px;
+}
+}

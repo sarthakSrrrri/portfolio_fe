@@ -1,7 +1,5 @@
 import { FaLinkedinIn, FaGithub, FaMedium, FaAws } from 'react-icons/fa'
 import {
-  SiCloudflare,
-  SiReact,
   SiPython,
   SiTensorflow,
   SiPytorch,
@@ -221,18 +219,6 @@ return ( <> <main className="home"> <section className="home-container"> <div cl
       </div>
     </div>
   </section>
-
-  <div className="hosted-badge">
-    <span className="hosted-item">
-      <SiCloudflare className="hosted-icon hosted-icon-cf" aria-hidden="true" />
-      Hosted by Cloudflare
-    </span>
-    <span className="hosted-divider"></span>
-    <span className="hosted-item">
-      <SiReact className="hosted-icon hosted-icon-react" aria-hidden="true" />
-      Made with React
-    </span>
-  </div>
 </main>
 
 <section className="tech-marquee">
