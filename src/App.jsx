@@ -14,7 +14,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
 
         <Route
-          path="/projects/triptrace"
+          path="/projects/Statistical Pattern Analysis & Anomaly Detection on 10.9M NYC Taxi Trips"
           element={<TripTrace />}
         />
       </Routes>
