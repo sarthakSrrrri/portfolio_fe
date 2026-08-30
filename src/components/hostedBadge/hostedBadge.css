@@ -72,9 +72,8 @@ animation: none;
 
 @media (max-width: 600px) {
 .hosted-badge {
-top: 16px;
-bottom: auto;
 right: 12px;
+bottom: 12px;
 padding: 5px 12px;
 gap: 6px;
 font-size: 0.68rem;

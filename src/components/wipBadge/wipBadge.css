@@ -1,0 +1,58 @@
+.wip-badge {
+position: fixed;
+top: 16px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 999;
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 7px 16px;
+border-radius: 999px;
+border: 1px solid rgba(251, 191, 36, 0.35);
+background: rgba(8, 12, 20, 0.85);
+backdrop-filter: blur(14px);
+box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+font-family: "DM Sans", sans-serif;
+font-size: 0.75rem;
+font-weight: 500;
+color: #fbbf24;
+white-space: nowrap;
+}
+
+.wip-dot {
+width: 6px;
+height: 6px;
+flex-shrink: 0;
+border-radius: 50%;
+background: #fbbf24;
+box-shadow: 0 0 8px #fbbf24;
+animation: wipPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes wipPulse {
+0%, 100% {
+opacity: 0.4;
+}
+50% {
+opacity: 1;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.wip-dot {
+animation: none;
+}
+}
+
+@media (max-width: 600px) {
+.wip-badge {
+top: 10px;
+padding: 5px 12px;
+font-size: 0.62rem;
+gap: 6px;
+max-width: 92vw;
+white-space: normal;
+text-align: center;
+}
+}
