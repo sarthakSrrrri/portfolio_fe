@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+.humanoid-page {
+  position: relative;
+  min-height: 100vh;
+  background: #160f2e;
+  color: #f8fafc;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.humanoid-scene-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.scene-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 15, 46, 0.65) 0%,
+    rgba(22, 15, 46, 0.1) 35%,
+    rgba(22, 15, 46, 0.2) 65%,
+    rgba(22, 15, 46, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+.humanoid-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 100px 8%;
+}
+
+.humanoid-hero {
+  max-width: 620px;
+  padding-top: 40px;
+}
+
+.humanoid-eyebrow {
+  margin: 0 0 16px;
+  color: #60a5fa;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.humanoid-title {
+  margin: 0;
+  max-width: 780px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 30px rgba(5, 7, 12, 0.8);
+}
+
+.humanoid-description {
+  max-width: 640px;
+  margin-top: 22px;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-shadow: 0 2px 16px rgba(5, 7, 12, 0.9);
+}
+
+.hud {
+  position: fixed;
+  z-index: 3;
+  padding: 6px 12px;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 999px;
+  background: rgba(5, 8, 15, 0.6);
+  backdrop-filter: blur(6px);
+  color: #94a3b8;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.hud-top-left {
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f8fafc;
+}
+
+.hud-top-right {
+  top: 16px;
+  right: 16px;
+}
+
+.hud-bottom-left {
+  bottom: 16px;
+  left: 16px;
+}
+
+.hud-bottom-right {
+  bottom: 16px;
+  right: 16px;
+  font-weight: 600;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 8px currentColor;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.agent-panel {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 28px;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 20px;
+  background: rgba(8, 12, 20, 0.7);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.agent-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #60a5fa;
+}
+
+.panel-header svg {
+  margin-top: 4px;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.panel-label {
+  margin: 0;
+  color: #60a5fa;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.panel-title {
+  margin: 6px 0 0;
+  color: #f8fafc;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 6px 12px;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 999px;
+  background: rgba(5, 8, 15, 0.5);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.task-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.task-input {
+  width: 100%;
+  height: 130px;
+  padding: 14px;
+  resize: none;
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  border-radius: 12px;
+  outline: none;
+  background: #0b1220;
+  color: #f8fafc;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  transition: border-color 0.2s ease;
+}
+
+.task-input::placeholder {
+  color: #475569;
+}
+
+.task-input:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+}
+
+.plan-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  color: #05070c;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.plan-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.execution-plan {
+  margin-top: 32px;
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  border-radius: 10px;
+  background: rgba(11, 18, 32, 0.6);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.skill-active {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(96, 165, 250, 0.08);
+  transform: translateX(2px);
+}
+
+.skill-number {
+  color: #64748b;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+}
+
+.skill-active .skill-number {
+  color: #60a5fa;
+}
+
+.skill-name {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .humanoid-content {
+    padding: 80px 6% 60px;
+  }
+
+  .agent-panel {
+    max-width: 100%;
+  }
+
+  .hud-top-right {
+    display: none;
+  }
+}
