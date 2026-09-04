@@ -291,14 +291,14 @@ export default function HumanoidRobotPage() {
           <p className="humanoid-eyebrow">Agentic AI · Robotics · Reinforcement Learning</p>
 
           <h1 className="humanoid-title">
-           Humanoid Robot Simulation
+           Simulation
             <br />
             With <br/>
            Agentic AI & Reinforcement Learning
           </h1>
 
           <p className="humanoid-description">
-            An intelligent humanoid robot simulator where an AI agent understands natural-language
+            An intelligent simulator where an AI agent understands natural-language
             goals, plans tasks, and orchestrates learned robotic skills through an interactive 3D
             environment.
           </p>
