@@ -7,6 +7,7 @@ import HumanoidRobotPage from "./page/projects/reinforcement_ai/re_ai";
 import VectorDbPlayground from "./page/projects/similarity_search/ss_vector_db";
 import HostedBadge from "./components/hostedBadge/hostedBadge";
 import WipBadge from "./components/wipBadge/wipBadge";
+import AiChatWidget from "./components/aiChatWidget/aiChatWidget";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
       <WipBadge />
       <HostedBadge />
+      <AiChatWidget />
     </BrowserRouter>
   );
 }

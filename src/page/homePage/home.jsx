@@ -1,4 +1,5 @@
-import { FaLinkedinIn, FaGithub, FaMedium, FaAws } from 'react-icons/fa'
+import { useRef } from 'react'
+import { FaLinkedinIn, FaGithub, FaMedium, FaAws, FaArrowRight } from 'react-icons/fa'
 import {
   SiPython,
   SiTensorflow,
@@ -12,6 +13,8 @@ import {
   SiPostgresql,
   SiHuggingface,
 } from 'react-icons/si'
+import rlAiImage from '../../assets/ri_ai_image.png'
+import vectorSimilarityImage from '../../assets/vector_similarity.png'
 import './home.css'
 
 const CLUSTER_MINI_A = [[18, 26], [32, 40], [14, 48], [36, 16]]
@@ -31,6 +34,84 @@ const TECH_STACK = [
   { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
   { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
 ]
+
+const FEATURED_PROJECTS = [
+  {
+    title: 'Agentic AI & Reinforcement Learning',
+    description:
+      "An intelligent simulator where an AI agent understands natural-language goals, plans tasks, and orchestrates learned robotic skills through an interactive 3D environment. Out of everything I've built, this is the one that pushed me the most.",
+    tags: ['Reinforcement Learning', 'Agentic AI'],
+    href: '/projects/reinforcement-ai',
+    image: rlAiImage,
+    alt: 'Agentic AI & Reinforcement Learning simulation preview',
+    callouts: ['Agentic Planning', '3D RL Simulation'],
+  },
+  {
+    title: 'Vector Similarity Search & Chunking',
+    description:
+      'Upload a document, pick an embedding model, chunking strategy, and vector database, then run the pipeline to see how each choice affects retrieval quality — a hands-on playground for comparing RAG configurations.',
+    tags: ['Vector Databases', 'RAG'],
+    href: '/projects/similarity-search',
+    image: vectorSimilarityImage,
+    alt: 'Vector Similarity Search & Chunking playground preview',
+    callouts: ['Embedding Playground', 'RAG Pipeline'],
+  },
+]
+
+function FeatureCard({ project, reversed }) {
+  const tiltRef = useRef(null)
+
+  const handleTiltMove = (e) => {
+    const el = tiltRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    el.style.transform = `rotateX(${(-y * 14).toFixed(2)}deg) rotateY(${(x * 14).toFixed(2)}deg) scale(1.03)`
+  }
+
+  const handleTiltLeave = () => {
+    const el = tiltRef.current
+    if (!el) return
+    el.style.transform = ''
+  }
+
+  return (
+    <div className={`favorite-project-container${reversed ? ' is-reversed' : ''}`}>
+      <div className="favorite-project-media" onMouseMove={handleTiltMove} onMouseLeave={handleTiltLeave}>
+        <div className="favorite-project-frame" ref={tiltRef}>
+          <img className="favorite-project-image" src={project.image} alt={project.alt} />
+        </div>
+
+        <div className="favorite-callout callout-top">
+          <span className="favorite-callout-dot"></span>
+          {project.callouts[0]}
+        </div>
+
+        <div className="favorite-callout callout-bottom">
+          <span className="favorite-callout-dot"></span>
+          {project.callouts[1]}
+        </div>
+      </div>
+
+      <div className="favorite-project-content">
+        <h2 className="favorite-project-title">{project.title}</h2>
+        <p className="favorite-project-description">{project.description}</p>
+
+        <div className="favorite-project-tags">
+          {project.tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+
+        <a className="favorite-project-cta" href={project.href}>
+          Explore the project
+          <FaArrowRight aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  )
+}
 
 function Home() {
 return ( <> <main className="home"> <section className="home-container"> <div className="home-content">
@@ -221,13 +302,23 @@ return ( <> <main className="home"> <section className="home-container"> <div cl
   </section>
 </main>
 
-<section className="tech-marquee">
-  <div className="tech-track">
-    {[...TECH_STACK, ...TECH_STACK].map(({ name, Icon, color }, i) => (
-      <div className="tech-item" key={`${name}-${i}`}>
+<section className="tech-section">
+  <div className="tech-grid">
+    {TECH_STACK.map(({ name, Icon, color }) => (
+      <div className="tech-tile" key={name}>
         <Icon className="tech-icon" style={{ color }} aria-hidden="true" />
         <span>{name}</span>
       </div>
+    ))}
+  </div>
+</section>
+
+<section className="favorite-project">
+  <span className="favorite-project-kicker" aria-hidden="true">SELECTED WORK</span>
+
+  <div className="favorite-project-list">
+    {FEATURED_PROJECTS.map((project, i) => (
+      <FeatureCard key={project.title} project={project} reversed={i % 2 === 1} />
     ))}
   </div>
 </section>

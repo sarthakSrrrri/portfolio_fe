@@ -1,0 +1,112 @@
+.ai-chat-widget {
+position: fixed;
+left: 50%;
+bottom: 20px;
+transform: translateX(-50%);
+z-index: 998;
+font-family: "DM Sans", sans-serif;
+}
+
+.ai-chat-bar {
+display: flex;
+align-items: center;
+height: 48px;
+width: 48px;
+border-radius: 999px;
+overflow: hidden;
+background: rgba(8, 12, 20, 0.92);
+border: 1px solid rgba(96, 165, 250, 0.3);
+box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 16px rgba(96, 165, 250, 0.25);
+transition: width 0.4s cubic-bezier(0.34, 1.15, 0.4, 1), box-shadow 0.4s ease;
+animation: orbGlow 3s ease-in-out infinite;
+}
+
+.ai-chat-widget.is-open .ai-chat-bar {
+width: min(400px, 90vw);
+padding-right: 6px;
+animation: none;
+}
+
+@keyframes orbGlow {
+0%, 100% {
+box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 16px rgba(96, 165, 250, 0.25);
+}
+50% {
+box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 26px rgba(34, 211, 238, 0.5);
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.ai-chat-bar {
+animation: none;
+}
+}
+
+.ai-chat-orb {
+flex-shrink: 0;
+width: 48px;
+height: 48px;
+border: none;
+background: transparent;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.ai-orb-canvas {
+width: 30px !important;
+height: 30px !important;
+}
+
+.ai-chat-input {
+flex: 1;
+min-width: 0;
+width: 0;
+opacity: 0;
+padding: 0;
+border: none;
+background: transparent;
+color: #f8fafc;
+font-size: 0.86rem;
+font-family: inherit;
+outline: none;
+transition: opacity 0.2s ease, width 0.3s ease;
+}
+
+.ai-chat-widget.is-open .ai-chat-input {
+width: auto;
+opacity: 1;
+padding: 0 4px;
+transition: opacity 0.3s ease 0.2s, width 0.3s ease;
+}
+
+.ai-chat-send {
+flex-shrink: 0;
+width: 0;
+height: 36px;
+overflow: hidden;
+border: none;
+border-radius: 50%;
+background: #60a5fa;
+color: #07111f;
+font-size: 0.85rem;
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 0;
+cursor: pointer;
+transition: opacity 0.2s ease, width 0.25s ease;
+}
+
+.ai-chat-widget.is-open .ai-chat-send {
+width: 36px;
+opacity: 1;
+transition: opacity 0.3s ease 0.25s, width 0.25s ease;
+}
+
+@media (max-width: 600px) {
+.ai-chat-widget.is-open .ai-chat-bar {
+width: 92vw;
+}
+}
