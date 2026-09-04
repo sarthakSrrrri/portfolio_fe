@@ -9,6 +9,14 @@ const ACCENT_SOFT = "#a78bfa";
 
 const STEPS = ["Navigate", "Reach", "Grasp", "Place"];
 
+// Dummy waypoints the robot walks through, one per step in STEPS.
+const PATH = [
+  [0, 0, 0],
+  [1.4, 0, 0.6],
+  [1.4, 0, -1.2],
+  [-1.2, 0, -1.2],
+];
+
 const BOT = {
   body: "#fbbf24",
   head: "#38bdf8",
@@ -31,19 +39,27 @@ const STATUS = {
   ready: { label: "READY", color: ACCENT },
 };
 
-function RobotBuddy() {
+function RobotBuddy({ target = PATH[0] }) {
   const group = useRef(null);
   const rightArm = useRef(null);
   const antennaBall = useRef(null);
   const leftEye = useRef(null);
   const rightEye = useRef(null);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     const t = clock.getElapsedTime();
 
     if (group.current) {
-      group.current.position.y = Math.abs(Math.sin(t * 2)) * 0.07;
-      group.current.rotation.y = Math.sin(t * 0.5) * 0.3;
+      const pos = group.current.position;
+      pos.x += (target[0] - pos.x) * Math.min(delta * 2, 1);
+      pos.z += (target[2] - pos.z) * Math.min(delta * 2, 1);
+      pos.y = Math.abs(Math.sin(t * 2)) * 0.07;
+
+      const dx = target[0] - pos.x;
+      const dz = target[2] - pos.z;
+      if (Math.hypot(dx, dz) > 0.05) {
+        group.current.rotation.y = Math.atan2(dx, dz);
+      }
     }
     if (rightArm.current) {
       rightArm.current.rotation.z = -0.6 + Math.sin(t * 3) * 0.5;
@@ -166,7 +182,7 @@ function RobotBuddy() {
   );
 }
 
-function SimulationScene() {
+function SimulationCanvas({ target }) {
   return (
     <Canvas shadows camera={{ position: [4.2, 2.8, 5.6], fov: 48 }} style={{ width: "100%", height: "100%" }}>
       <color attach="background" args={["#160f2e"]} />
@@ -199,7 +215,7 @@ function SimulationScene() {
 
       <ContactShadows position={[0, 0.01, 0]} opacity={0.6} scale={6} blur={2} far={2} />
 
-      <RobotBuddy />
+      <RobotBuddy target={target} />
 
       <OrbitControls
         enableDamping
@@ -220,21 +236,40 @@ function SimulationScene() {
 export default function HumanoidRobotPage() {
   const [status, setStatus] = useState("idle");
   const [planned, setPlanned] = useState(false);
+  const [step, setStep] = useState(0);
   const timerRef = useRef(null);
+  const stepTimerRef = useRef(null);
 
-  useEffect(() => () => clearTimeout(timerRef.current), []);
+  useEffect(() => () => {
+    clearTimeout(timerRef.current);
+    clearInterval(stepTimerRef.current);
+  }, []);
 
   const handlePlan = () => {
     setStatus("planning");
     setPlanned(true);
+    setStep(0);
+
     clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setStatus("ready"), STEPS.length * 160 + 500);
+    clearInterval(stepTimerRef.current);
+
+    let current = 0;
+    stepTimerRef.current = setInterval(() => {
+      current += 1;
+      if (current >= PATH.length) {
+        clearInterval(stepTimerRef.current);
+        return;
+      }
+      setStep(current);
+    }, 900);
+
+    timerRef.current = setTimeout(() => setStatus("ready"), PATH.length * 900 + 500);
   };
 
   return (
     <main className="humanoid-page">
       <div className="humanoid-scene-bg">
-        <SimulationScene />
+        <SimulationCanvas target={PATH[step]} />
         <div className="scene-overlay" />
       </div>
 
