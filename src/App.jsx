@@ -5,6 +5,7 @@ import Projects from "./page/projects/Projects";
 import TripTrace from "./page/projects/triptrace_pro/triptrace"
 import HumanoidRobotPage from "./page/projects/reinforcement_ai/re_ai";
 import VectorDbPlayground from "./page/projects/similarity_search/ss_vector_db";
+import ActivationFunctionsPage from "./page/projects/activation_functions/activation_functions";
 import HostedBadge from "./components/hostedBadge/hostedBadge";
 import WipBadge from "./components/wipBadge/wipBadge";
 import AiChatWidget from "./components/aiChatWidget/aiChatWidget";
@@ -25,6 +26,8 @@ function App() {
         <Route path="/projects/reinforcement-ai" element={<HumanoidRobotPage />} />
 
         <Route path="/projects/similarity-search" element={<VectorDbPlayground />} />
+
+        <Route path="/projects/activation-functions" element={<ActivationFunctionsPage />} />
       </Routes>
 
       <WipBadge />

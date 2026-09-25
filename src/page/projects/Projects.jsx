@@ -26,6 +26,14 @@ const PROJECTS = [
     href: '/projects/similarity-search',
     tags: ['Vector Databases', 'Embeddings', 'RAG'],
   },
+  {
+    title: 'Why Neural Networks Need Activation Functions',
+    label: 'DEEP LEARNING · FUNDAMENTALS',
+    description:
+      'An interactive 3D lab comparing Sigmoid, ReLU, Tanh, and Softmax, showing how each transforms a neuron\'s raw output and why non-linearity is what lets networks learn curved patterns.',
+    href: '/projects/activation-functions',
+    tags: ['Neural Networks', 'Deep Learning', 'Three.js'],
+  },
 ]
 
 function Projects() {
