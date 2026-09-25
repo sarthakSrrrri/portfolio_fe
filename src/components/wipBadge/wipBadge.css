@@ -1,8 +1,7 @@
 .wip-badge {
 position: fixed;
-top: 16px;
-left: 50%;
-transform: translateX(-50%);
+bottom: 20px;
+left: 20px;
 z-index: 999;
 display: flex;
 align-items: center;
@@ -47,11 +46,12 @@ animation: none;
 
 @media (max-width: 600px) {
 .wip-badge {
-top: 10px;
+bottom: 12px;
+left: 12px;
 padding: 5px 12px;
 font-size: 0.62rem;
 gap: 6px;
-max-width: 92vw;
+max-width: 60vw;
 white-space: normal;
 text-align: center;
 }
