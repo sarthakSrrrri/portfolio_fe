@@ -45,18 +45,18 @@ const TECH_STACK = [
   { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
 ]
 
-const NAV_TOPICS = ['Python', 'Neural Network', 'Probability & Statistics', 'Machine Learning', 'Analytics', 'AI']
+const TOPICS = ['Python', 'Neural Network', 'Probability & Statistics', 'Machine Learning', 'Analytics', 'AI']
 
 function Home() {
 return ( <>
-<nav className="home-navbar" aria-label="Topics">
-  <ul className="home-navbar-list">
-    {NAV_TOPICS.map((topic) => (
-      <li key={topic}>{topic}</li>
-    ))}
-  </ul>
-</nav>
 <main className="home">
+  <nav className="home-topics-nav" aria-label="Topics">
+    {TOPICS.map((label) => (
+      <span key={label} className="home-topics-item">
+        {label}
+      </span>
+    ))}
+  </nav>
   <div className="neural-bg" aria-hidden="true">
     <svg className="neural-bg-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
       {NEURAL_BG_EDGES.map(([a, b], i) => {
@@ -87,7 +87,7 @@ return ( <>
       I'm <span>Sarthak Srivastava</span>
       </h1>
 
-      <div className="status-line">
+      {/* <div className="status-line">
         <span className="status-dot"></span>
         <span className="status-cycle">
         <span>learning something I probably should have known earlier</span>
@@ -99,21 +99,20 @@ return ( <>
         <span>reading the docs</span>
         <span>testing things and seeing what happens</span>
         </span>
-      </div>
+      </div> */}
 
       <h2 className="home-role">
         I work with Data and AI.
       </h2>
 
       <p className="home-description">
-        Most of my work involves looking at data, trying different models,
-        and figuring out what actually works. I work across Machine
-        Learning, NLP, Deep Learning, and AI.
+Working with Python, Machine Learning, Neural Networks, and AI to build practical data-driven solutions.
+Strong foundation in Probability & Statistics, with a focus on understanding patterns, uncertainty, and model behavior.
+Combining Analytics and Machine Learning to turn raw data into clear insights and useful outcomes.
       </p>
 
       <p className="home-description">
-        I also spend a good amount of time learning on my own and going back
-        to the fundamentals.
+
       </p>
 
 
