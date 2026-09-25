@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { FaLinkedinIn, FaGithub, FaMedium, FaAws, FaArrowRight } from 'react-icons/fa'
+import { FaLinkedinIn, FaGithub, FaMedium, FaAws } from 'react-icons/fa'
 import {
   SiPython,
   SiTensorflow,
@@ -13,12 +12,23 @@ import {
   SiPostgresql,
   SiHuggingface,
 } from 'react-icons/si'
-import rlAiImage from '../../assets/ri_ai_image.png'
-import vectorSimilarityImage from '../../assets/vector_similarity.png'
 import './home.css'
 
-const CLUSTER_MINI_A = [[18, 26], [32, 40], [14, 48], [36, 16]]
-const CLUSTER_MINI_B = [[86, 20], [100, 38], [76, 50], [104, 14]]
+const NEURAL_BG_NODES = [
+  [60, 80], [180, 140], [90, 230], [220, 260], [340, 120], [380, 300],
+  [500, 60], [520, 220], [620, 340], [700, 140], [760, 280], [840, 90],
+  [900, 220], [980, 340], [1040, 120], [1100, 260], [150, 420], [300, 480],
+  [450, 420], [600, 500], [750, 440], [900, 500], [1050, 460], [1150, 400],
+]
+
+const NEURAL_BG_EDGES = [
+  [0, 1], [1, 2], [1, 3], [3, 4], [4, 5], [4, 6], [6, 7], [5, 7], [7, 8],
+  [7, 9], [9, 10], [9, 11], [11, 12], [10, 12], [12, 13], [13, 14], [13, 15],
+  [2, 16], [3, 16], [16, 17], [17, 18], [5, 18], [18, 19], [8, 19], [19, 20],
+  [10, 20], [20, 21], [12, 21], [21, 22], [13, 22], [22, 23], [15, 23],
+]
+
+const NEURAL_BG_ACTIVE_EDGES = new Set([2, 7, 14, 20, 26])
 
 const TECH_STACK = [
   { name: 'Python', Icon: SiPython, color: '#4B8BBE' },
@@ -35,86 +45,43 @@ const TECH_STACK = [
   { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
 ]
 
-const FEATURED_PROJECTS = [
-  {
-    title: 'Agentic AI & Reinforcement Learning',
-    description:
-      "An intelligent simulator where an AI agent understands natural-language goals, plans tasks, and orchestrates learned robotic skills through an interactive 3D environment. Out of everything I've built, this is the one that pushed me the most.",
-    tags: ['Reinforcement Learning', 'Agentic AI'],
-    href: '/projects/reinforcement-ai',
-    image: rlAiImage,
-    alt: 'Agentic AI & Reinforcement Learning simulation preview',
-    callouts: ['Agentic Planning', '3D RL Simulation'],
-  },
-  {
-    title: 'Vector Similarity Search & Chunking',
-    description:
-      'Upload a document, pick an embedding model, chunking strategy, and vector database, then run the pipeline to see how each choice affects retrieval quality — a hands-on playground for comparing RAG configurations.',
-    tags: ['Vector Databases', 'RAG'],
-    href: '/projects/similarity-search',
-    image: vectorSimilarityImage,
-    alt: 'Vector Similarity Search & Chunking playground preview',
-    callouts: ['Embedding Playground', 'RAG Pipeline'],
-  },
-]
-
-function FeatureCard({ project, reversed }) {
-  const tiltRef = useRef(null)
-
-  const handleTiltMove = (e) => {
-    const el = tiltRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `rotateX(${(-y * 14).toFixed(2)}deg) rotateY(${(x * 14).toFixed(2)}deg) scale(1.03)`
-  }
-
-  const handleTiltLeave = () => {
-    const el = tiltRef.current
-    if (!el) return
-    el.style.transform = ''
-  }
-
-  return (
-    <div className={`favorite-project-container${reversed ? ' is-reversed' : ''}`}>
-      <div className="favorite-project-media" onMouseMove={handleTiltMove} onMouseLeave={handleTiltLeave}>
-        <div className="favorite-project-frame" ref={tiltRef}>
-          <img className="favorite-project-image" src={project.image} alt={project.alt} />
-        </div>
-
-        <div className="favorite-callout callout-top">
-          <span className="favorite-callout-dot"></span>
-          {project.callouts[0]}
-        </div>
-
-        <div className="favorite-callout callout-bottom">
-          <span className="favorite-callout-dot"></span>
-          {project.callouts[1]}
-        </div>
-      </div>
-
-      <div className="favorite-project-content">
-        <h2 className="favorite-project-title">{project.title}</h2>
-        <p className="favorite-project-description">{project.description}</p>
-
-        <div className="favorite-project-tags">
-          {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-
-        <a className="favorite-project-cta" href={project.href}>
-          Explore the project
-          <FaArrowRight aria-hidden="true" />
-        </a>
-      </div>
-    </div>
-  )
-}
+const NAV_TOPICS = ['Python', 'Neural Network', 'Probability & Statistics', 'Machine Learning', 'Analytics', 'AI']
 
 function Home() {
-return ( <> <main className="home"> <section className="home-container"> <div className="home-content">
+return ( <>
+<nav className="home-navbar" aria-label="Topics">
+  <ul className="home-navbar-list">
+    {NAV_TOPICS.map((topic) => (
+      <li key={topic}>{topic}</li>
+    ))}
+  </ul>
+</nav>
+<main className="home">
+  <div className="neural-bg" aria-hidden="true">
+    <svg className="neural-bg-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+      {NEURAL_BG_EDGES.map(([a, b], i) => {
+        const [x1, y1] = NEURAL_BG_NODES[a]
+        const [x2, y2] = NEURAL_BG_NODES[b]
+        return (
+          <line
+            key={`edge-${i}`}
+            className={`neural-bg-edge${NEURAL_BG_ACTIVE_EDGES.has(i) ? ' is-active' : ''}`}
+            x1={x1} y1={y1} x2={x2} y2={y2}
+            style={{ animationDelay: `${(i % 6) * 0.4}s` }}
+          />
+        )
+      })}
+      {NEURAL_BG_NODES.map(([x, y], i) => (
+        <circle
+          key={`node-${i}`}
+          className="neural-bg-node"
+          cx={x} cy={y} r={i % 3 === 0 ? 4.5 : 3}
+          style={{ animationDelay: `${(i % 8) * 0.3}s` }}
+        />
+      ))}
+    </svg>
+  </div>
+  <section className="home-container"> <div className="home-content">
 
       <h1 className="home-title">
       I'm <span>Sarthak Srivastava</span>
@@ -192,113 +159,6 @@ return ( <> <main className="home"> <section className="home-container"> <div cl
         <span>AWS</span>
       </div> */}
     </div>
-
-    <div className="home-visual">
-      <div className="visual-glow"></div>
-
-      <span className="floating-icon" aria-hidden="true">🧠</span>
-
-      <div className="mini-grid">
-        <div className="mini-card card-cluster">
-          <p className="mini-label">CLUSTERING</p>
-          <svg className="mini-chart" viewBox="0 0 120 70" aria-hidden="true">
-            <circle className="cluster-halo halo-a" cx="25" cy="32" r="26" />
-            <circle className="cluster-halo halo-b" cx="93" cy="28" r="26" />
-            {CLUSTER_MINI_A.map(([x, y], i) => (
-              <circle key={`a-${i}`} cx={x} cy={y} r="3.5" className="dot dot-a" style={{ animationDelay: `${i * 0.25}s` }} />
-            ))}
-            {CLUSTER_MINI_B.map(([x, y], i) => (
-              <circle key={`b-${i}`} cx={x} cy={y} r="3.5" className="dot dot-b" style={{ animationDelay: `${i * 0.25}s` }} />
-            ))}
-          </svg>
-        </div>
-
-        <div className="mini-card card-timeseries">
-          <p className="mini-label">TIME SERIES</p>
-          <svg className="mini-chart" viewBox="0 0 120 70" aria-hidden="true">
-            <path className="ts-line" d="M8,55 L28,42 L48,48 L68,24 L88,32 L110,14" />
-            <circle className="dot dot-c pulse-dot" cx="110" cy="14" r="4" />
-          </svg>
-        </div>
-
-        <div className="mini-card card-analytics">
-          <div className="mini-card-head">
-            <p className="mini-label">ANALYTICS</p>
-            <span className="mini-trend">▲ 32%</span>
-          </div>
-          <svg className="mini-chart" viewBox="0 0 120 70" aria-hidden="true">
-            <rect className="analytics-bar bar-a" x="10" y="35" width="18" height="30" rx="3" style={{ animationDelay: '0s' }} />
-            <rect className="analytics-bar bar-b" x="40" y="20" width="18" height="45" rx="3" style={{ animationDelay: '0.1s' }} />
-            <rect className="analytics-bar bar-c" x="70" y="28" width="18" height="37" rx="3" style={{ animationDelay: '0.2s' }} />
-            <rect className="analytics-bar bar-d" x="100" y="10" width="18" height="55" rx="3" style={{ animationDelay: '0.3s' }} />
-          </svg>
-        </div>
-
-        <div className="mini-card card-agentic">
-          <p className="mini-label">AGENTIC AI</p>
-          <svg className="mini-chart" viewBox="0 0 70 70" aria-hidden="true">
-            <circle className="agent-loop" cx="35" cy="35" r="24" />
-            <circle className="agent-node dot-a pulse-dot" cx="35" cy="11" r="4" style={{ animationDelay: '0s' }} />
-            <circle className="agent-node dot-b pulse-dot" cx="59" cy="35" r="4" style={{ animationDelay: '0.4s' }} />
-            <circle className="agent-node dot-c pulse-dot" cx="35" cy="59" r="4" style={{ animationDelay: '0.8s' }} />
-            <circle className="agent-node dot-a pulse-dot" cx="11" cy="35" r="4" style={{ animationDelay: '1.2s' }} />
-          </svg>
-        </div>
-
-        <div className="mini-card card-classification">
-          <p className="mini-label">CLASSIFICATION</p>
-          <svg className="mini-chart" viewBox="0 0 120 70" aria-hidden="true">
-            <line className="classify-line" x1="6" y1="62" x2="114" y2="8" />
-            <circle className="dot dot-a" cx="30" cy="20" r="3.5" style={{ animationDelay: '0s' }} />
-            <circle className="dot dot-a" cx="48" cy="12" r="3.5" style={{ animationDelay: '0.2s' }} />
-            <circle className="dot dot-a" cx="40" cy="34" r="3.5" style={{ animationDelay: '0.4s' }} />
-            <circle className="dot dot-c" cx="75" cy="58" r="3.5" style={{ animationDelay: '0.1s' }} />
-            <circle className="dot dot-c" cx="92" cy="46" r="3.5" style={{ animationDelay: '0.3s' }} />
-            <circle className="dot dot-c" cx="100" cy="60" r="3.5" style={{ animationDelay: '0.5s' }} />
-          </svg>
-        </div>
-
-        <div className="mini-card card-regression">
-          <p className="mini-label">REGRESSION</p>
-          <svg className="mini-chart" viewBox="0 0 120 70" aria-hidden="true">
-            <line className="regression-line" x1="8" y1="58" x2="112" y2="14" />
-            <circle className="dot dot-a" cx="20" cy="50" r="3" style={{ animationDelay: '0s' }} />
-            <circle className="dot dot-b" cx="35" cy="46" r="3" style={{ animationDelay: '0.15s' }} />
-            <circle className="dot dot-a" cx="50" cy="36" r="3" style={{ animationDelay: '0.3s' }} />
-            <circle className="dot dot-b" cx="65" cy="34" r="3" style={{ animationDelay: '0.45s' }} />
-            <circle className="dot dot-a" cx="80" cy="24" r="3" style={{ animationDelay: '0.6s' }} />
-            <circle className="dot dot-b" cx="95" cy="20" r="3" style={{ animationDelay: '0.75s' }} />
-          </svg>
-        </div>
-
-        <div className="mini-card card-reinforcement">
-          <p className="mini-label">REINFORCEMENT</p>
-          <svg className="mini-chart" viewBox="0 0 100 70" aria-hidden="true">
-            <path className="reinforce-path" d="M40,25 C55,14 65,14 78,24" />
-            <path className="reinforce-path" d="M78,46 C65,57 55,57 40,46" />
-            <circle className="agent-node dot-a pulse-dot" cx="25" cy="35" r="12" style={{ animationDelay: '0s' }} />
-            <circle className="agent-node dot-b pulse-dot" cx="75" cy="35" r="12" style={{ animationDelay: '0.5s' }} />
-          </svg>
-        </div>
-
-        <div className="mini-card card-rag">
-          <p className="mini-label">RAG</p>
-          <svg className="mini-chart" viewBox="0 0 120 70" aria-hidden="true">
-            <circle className="rag-node dot-a" cx="12" cy="35" r="7" />
-            <rect className="rag-chunk pulse-dot dot-b" x="48" y="12" width="24" height="12" rx="3" style={{ animationDelay: '0s' }} />
-            <rect className="rag-chunk pulse-dot dot-b" x="48" y="29" width="24" height="12" rx="3" style={{ animationDelay: '0.3s' }} />
-            <rect className="rag-chunk pulse-dot dot-b" x="48" y="46" width="24" height="12" rx="3" style={{ animationDelay: '0.6s' }} />
-            <circle className="rag-node dot-c" cx="108" cy="35" r="7" />
-            <line className="rag-line" x1="19" y1="35" x2="48" y2="18" />
-            <line className="rag-line" x1="19" y1="35" x2="48" y2="35" />
-            <line className="rag-line" x1="19" y1="35" x2="48" y2="52" />
-            <line className="rag-line" x1="72" y1="18" x2="101" y2="35" />
-            <line className="rag-line" x1="72" y1="35" x2="101" y2="35" />
-            <line className="rag-line" x1="72" y1="52" x2="101" y2="35" />
-          </svg>
-        </div>
-      </div>
-    </div>
   </section>
 </main>
 
@@ -309,16 +169,6 @@ return ( <> <main className="home"> <section className="home-container"> <div cl
         <Icon className="tech-icon" style={{ color }} aria-hidden="true" />
         <span>{name}</span>
       </div>
-    ))}
-  </div>
-</section>
-
-<section className="favorite-project">
-  <span className="favorite-project-kicker" aria-hidden="true">SELECTED WORK</span>
-
-  <div className="favorite-project-list">
-    {FEATURED_PROJECTS.map((project, i) => (
-      <FeatureCard key={project.title} project={project} reversed={i % 2 === 1} />
     ))}
   </div>
 </section>
