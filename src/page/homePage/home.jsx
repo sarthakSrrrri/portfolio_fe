@@ -1,4 +1,5 @@
-import { FaLinkedinIn, FaGithub, FaMedium, FaAws } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { FaLinkedinIn, FaGithub, FaMedium, FaAws, FaBars, FaTimes } from 'react-icons/fa'
 import {
   SiPython,
   SiTensorflow,
@@ -45,17 +46,40 @@ const TECH_STACK = [
   { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
 ]
 
-const TOPICS = ['Python', 'Neural Network', 'Probability & Statistics', 'Machine Learning', 'Analytics', 'AI']
+const TOPICS = ["What I'm Building", 'Python', 'Math & Stats', 'Machine Learning', 'AI', 'Experiments']
 
 function Home() {
+const [topicsOpen, setTopicsOpen] = useState(true)
+
+useEffect(() => {
+  const timer = setTimeout(() => setTopicsOpen(false), 2000)
+  return () => clearTimeout(timer)
+}, [])
+
 return ( <>
 <main className="home">
-  <nav className="home-topics-nav" aria-label="Topics">
-    {TOPICS.map((label) => (
-      <span key={label} className="home-topics-item">
-        {label}
-      </span>
-    ))}
+  <nav className={`home-topics-nav${topicsOpen ? ' is-open' : ''}`} aria-label="Topics">
+    <button
+      type="button"
+      className={`home-topics-toggle${topicsOpen ? '' : ' is-pulsing'}`}
+      onClick={() => setTopicsOpen((open) => !open)}
+      aria-expanded={topicsOpen}
+      aria-label="Toggle topics menu"
+    >
+      {topicsOpen ? <FaTimes /> : <FaBars />}
+    </button>
+
+    <div className="home-topics-list">
+      {TOPICS.map((label, index) => (
+        <span
+          key={label}
+          className="home-topics-item"
+          style={{ transitionDelay: `${index * 60}ms` }}
+        >
+          {label}
+        </span>
+      ))}
+    </div>
   </nav>
   <div className="neural-bg" aria-hidden="true">
     <svg className="neural-bg-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
@@ -106,7 +130,7 @@ return ( <>
       </h2>
 
       <p className="home-description">
-Working with Python, Machine Learning, Neural Networks, and AI to build practical data-driven solutions.
+Working with Python, Machine Learning, Neural Networks, and AI to build practical data driven solutions.
 Strong foundation in Probability & Statistics, with a focus on understanding patterns, uncertainty, and model behavior.
 Combining Analytics and Machine Learning to turn raw data into clear insights and useful outcomes.
       </p>
