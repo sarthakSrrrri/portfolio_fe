@@ -52,11 +52,9 @@ const TECH_STACK = [
 const TOPICS = [
   { label: 'Home', href: '/' },
   { label: "What I'm Building", href: '/projects' },
-  { label: 'Python' },
   { label: 'Statistics & Probability' },
   { label: 'Machine Learning & Analytics' },
   { label: 'Artifical Intelligence' },
-  { label: 'Experiments' },
 ]
 
 function Home() {
@@ -76,45 +74,49 @@ return ( <>
     </button>
 
     <div className="home-topics-list">
-      <p className="home-topics-mini-heading">
-        <span className="wip-dot"></span>
-        Work in progress
-      </p>
+      <section className="home-topics-section home-topics-section-status">
+        <p className="home-topics-mini-heading">
+          <span className="wip-dot"></span>
+          Work in progress
+        </p>
 
-      <div className="home-topics-cloudflare">
-        <SiCloudflare className="home-topics-cloudflare-icon" aria-hidden="true" />
-        <div className="home-topics-cloudflare-text">
-          <span className="home-topics-cloudflare-title">Hosted on Cloudflare</span>
-          <span className="home-topics-cloudflare-sub">Fast, secure global edge network</span>
+        <div className="home-topics-cloudflare">
+          <SiCloudflare className="home-topics-cloudflare-icon" aria-hidden="true" />
+          <div className="home-topics-cloudflare-text">
+            <span className="home-topics-cloudflare-title">Hosted on Cloudflare</span>
+            <span className="home-topics-cloudflare-sub">Fast, secure global edge network</span>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <p className="home-topics-heading">Topics</p>
-      {TOPICS.map(({ label, href }, index) => (
-        href ? (
-          <Link
-            key={label}
-            to={href}
-            className="home-topics-item home-topics-link"
-            style={{ transitionDelay: `${index * 60}ms` }}
-            onClick={() => setTopicsOpen(false)}
-          >
-            <span className="home-topics-index">{String(index + 1).padStart(2, '0')}</span>
-            <span className="home-topics-label">{label}</span>
-          </Link>
-        ) : (
-          <span
-            key={label}
-            className="home-topics-item"
-            style={{ transitionDelay: `${index * 60}ms` }}
-          >
-            <span className="home-topics-index">{String(index + 1).padStart(2, '0')}</span>
-            <span className="home-topics-label">{label}</span>
-          </span>
-        )
-      ))}
+      <section className="home-topics-section home-topics-section-menu">
+        <p className="home-topics-heading">Topics</p>
+        {TOPICS.map(({ label, href }, index) => (
+          href ? (
+            <Link
+              key={label}
+              to={href}
+              className="home-topics-item home-topics-link"
+              style={{ transitionDelay: `${index * 60}ms` }}
+              onClick={() => setTopicsOpen(false)}
+            >
+              <span className="home-topics-index">{String(index + 1).padStart(2, '0')}</span>
+              <span className="home-topics-label">{label}</span>
+            </Link>
+          ) : (
+            <span
+              key={label}
+              className="home-topics-item"
+              style={{ transitionDelay: `${index * 60}ms` }}
+            >
+              <span className="home-topics-index">{String(index + 1).padStart(2, '0')}</span>
+              <span className="home-topics-label">{label}</span>
+            </span>
+          )
+        ))}
+      </section>
 
-      <div className="home-topics-contact">
+      <section className="home-topics-section home-topics-section-contact">
         <p className="home-topics-heading">Get in touch</p>
 
         <a
@@ -157,7 +159,7 @@ return ( <>
           </span>
           <span className="home-topics-contact-arrow">→</span>
         </a>
-      </div>
+      </section>
     </div>
   </nav>
   <div

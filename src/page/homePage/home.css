@@ -115,11 +115,19 @@ text-shadow: 0 0 16px rgba(255, 255, 255, 1), 0 0 32px rgba(255, 255, 255, 0.6);
 transform: translateY(-2px);
 }
 
+.home-topics-section-menu {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+gap: 10px;
+}
+
 .home-topics-heading,
 .home-topics-index,
 .home-topics-mini-heading,
 .home-topics-cloudflare,
-.home-topics-contact {
+.home-topics-section-status,
+.home-topics-section-contact {
 display: none;
 }
 
@@ -206,6 +214,8 @@ pointer-events: auto;
 .home-topics-list {
 display: flex;
 flex-direction: column;
+flex-wrap: nowrap;
+justify-content: flex-start;
 align-items: stretch;
 gap: 2px;
 position: fixed;
@@ -218,7 +228,7 @@ z-index: 55;
 opacity: 1;
 visibility: hidden;
 pointer-events: none;
-padding: 72px 20px 32px;
+padding: 64px 20px 24px;
 overflow-y: auto;
 overflow-x: hidden;
 border-radius: 0;
@@ -229,7 +239,7 @@ backdrop-filter: blur(20px);
 box-shadow: -24px 0 48px rgba(0, 0, 0, 0.65);
 transform: translateX(100%);
 transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.32s;
-font-family: "JetBrains Mono", monospace;
+font-family: "Space Grotesk", sans-serif;
 }
 
 .home-topics-nav.is-open .home-topics-list {
@@ -241,11 +251,13 @@ transform: translateX(0);
 .home-topics-mini-heading {
 display: flex;
 align-items: center;
+width: 100%;
+flex-shrink: 0;
 gap: 8px;
 margin: 0 0 14px;
 padding: 0 12px;
 color: #fbbf24;
-font-family: "Orbitron", sans-serif;
+font-family: "Space Grotesk", sans-serif;
 font-size: 0.72rem;
 font-weight: 700;
 letter-spacing: 0.1em;
@@ -255,6 +267,8 @@ text-transform: uppercase;
 .home-topics-cloudflare {
 display: flex;
 align-items: center;
+width: 100%;
+flex-shrink: 0;
 gap: 14px;
 margin: 0 0 20px;
 padding: 16px 14px;
@@ -280,7 +294,7 @@ min-width: 0;
 
 .home-topics-cloudflare-title {
 color: #ffffff;
-font-family: "Orbitron", sans-serif;
+font-family: "Space Grotesk", sans-serif;
 font-size: 0.85rem;
 font-weight: 700;
 }
@@ -293,12 +307,38 @@ white-space: normal;
 line-height: 1.3;
 }
 
+.home-topics-section {
+display: flex;
+flex-direction: column;
+width: 100%;
+flex-shrink: 0;
+padding: 14px 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-topics-section:first-child {
+padding-top: 0;
+}
+
+.home-topics-section:last-child {
+border-bottom: none;
+margin-top: auto;
+padding-bottom: 0;
+}
+
+.home-topics-section-menu {
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+justify-content: flex-start;
+}
+
 .home-topics-heading {
 display: block;
 margin: 0 0 12px;
 padding: 0 12px;
 color: rgba(255, 255, 255, 0.4);
-font-family: "Orbitron", sans-serif;
+font-family: "Space Grotesk", sans-serif;
 font-size: 0.72rem;
 font-weight: 700;
 letter-spacing: 0.18em;
@@ -365,31 +405,19 @@ margin-left: 8px;
 opacity: 0.8;
 }
 
-.home-topics-contact {
-display: flex;
-flex-direction: column;
-align-self: stretch;
-width: 100%;
-flex-shrink: 0;
-gap: 10px;
-margin-top: auto;
-padding: 20px 0 0;
-border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.home-topics-contact .home-topics-heading {
-display: block;
-margin: 0 0 4px;
+.home-topics-section-contact {
+gap: 8px;
+font-family: "Space Grotesk", sans-serif;
 }
 
 .home-topics-contact-card {
 display: flex;
 align-items: center;
-gap: 12px;
+gap: 10px;
 width: 100%;
 min-width: 0;
-padding: 12px;
-border-radius: 14px;
+padding: 9px 10px;
+border-radius: 12px;
 border: 1px solid rgba(255, 255, 255, 0.08);
 background: rgba(255, 255, 255, 0.03);
 color: rgba(226, 232, 240, 0.9);
@@ -404,36 +432,37 @@ transform: scale(0.98);
 display: flex;
 align-items: center;
 justify-content: center;
-width: 38px;
-height: 38px;
+width: 30px;
+height: 30px;
 flex-shrink: 0;
 border-radius: 50%;
-font-size: 1.05rem;
+font-size: 0.85rem;
 }
 
 .home-topics-contact-text {
 display: flex;
 flex-direction: column;
-gap: 1px;
+gap: 0px;
 min-width: 0;
 flex: 1;
 }
 
 .home-topics-contact-title {
-font-size: 0.85rem;
-font-weight: 700;
+font-size: 0.78rem;
+font-weight: 600;
 color: #ffffff;
 }
 
 .home-topics-contact-sub {
-font-size: 0.72rem;
-color: rgba(226, 232, 240, 0.55);
+font-size: 0.66rem;
+color: rgba(226, 232, 240, 0.5);
 white-space: normal;
 word-break: break-word;
 }
 
 .home-topics-contact-arrow {
 flex-shrink: 0;
+font-size: 0.8rem;
 opacity: 0.4;
 transition: opacity 0.2s ease, transform 0.2s ease;
 }
