@@ -98,9 +98,8 @@ return ( <>
       </h2>
 
       <p className="home-description">
-Working with Python, Machine Learning, Neural Networks, and AI to build practical data driven solutions.
-Strong foundation in Probability & Statistics, with a focus on understanding patterns, uncertainty, and model behavior.
-Combining Analytics and Machine Learning to turn raw data into clear insights and useful outcomes.
+I work across Advanced Python, C++, Machine Learning, Data Science, and AI, with a strong interest in the fundamentals behind them. I like going from Mathematics, Probability, Statistics, and Analytics to core ML, Neural Networks, Deep Learning, and AI not just using models, but understanding how they learn, why they behave the way they do, and where they actually work in practice.
+
       </p>
 
       <p className="home-description">
