@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaLinkedinIn, FaGithub, FaMedium, FaAws, FaBars, FaTimes } from 'react-icons/fa'
 import {
   SiPython,
@@ -46,15 +47,17 @@ const TECH_STACK = [
   { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
 ]
 
-const TOPICS = ["What I'm Building", 'Python', 'Math & Stats', 'Machine Learning', 'AI', 'Experiments']
+const TOPICS = [
+  { label: "What I'm Building", href: '/projects' },
+  { label: 'Python' },
+  { label: 'Statistics & Probability' },
+  { label: 'Machine Learning & Analytics' },
+  { label: 'Artifical Intelligence' },
+  { label: 'Experiments' },
+]
 
 function Home() {
-const [topicsOpen, setTopicsOpen] = useState(true)
-
-useEffect(() => {
-  const timer = setTimeout(() => setTopicsOpen(false), 2000)
-  return () => clearTimeout(timer)
-}, [])
+const [topicsOpen, setTopicsOpen] = useState(false)
 
 return ( <>
 <main className="home">
@@ -70,17 +73,37 @@ return ( <>
     </button>
 
     <div className="home-topics-list">
-      {TOPICS.map((label, index) => (
-        <span
-          key={label}
-          className="home-topics-item"
-          style={{ transitionDelay: `${index * 60}ms` }}
-        >
-          {label}
-        </span>
+      <p className="home-topics-heading">Topics</p>
+      {TOPICS.map(({ label, href }, index) => (
+        href ? (
+          <Link
+            key={label}
+            to={href}
+            className="home-topics-item home-topics-link"
+            style={{ transitionDelay: `${index * 60}ms` }}
+            onClick={() => setTopicsOpen(false)}
+          >
+            <span className="home-topics-index">{String(index + 1).padStart(2, '0')}</span>
+            <span className="home-topics-label">{label}</span>
+          </Link>
+        ) : (
+          <span
+            key={label}
+            className="home-topics-item"
+            style={{ transitionDelay: `${index * 60}ms` }}
+          >
+            <span className="home-topics-index">{String(index + 1).padStart(2, '0')}</span>
+            <span className="home-topics-label">{label}</span>
+          </span>
+        )
       ))}
     </div>
   </nav>
+  <div
+    className={`home-topics-backdrop${topicsOpen ? ' is-open' : ''}`}
+    onClick={() => setTopicsOpen(false)}
+    aria-hidden="true"
+  />
   <div className="neural-bg" aria-hidden="true">
     <svg className="neural-bg-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
       {NEURAL_BG_EDGES.map(([a, b], i) => {
