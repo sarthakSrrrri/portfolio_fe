@@ -12,9 +12,9 @@ border: 1px solid rgba(251, 191, 36, 0.35);
 background: rgba(8, 12, 20, 0.85);
 backdrop-filter: blur(14px);
 box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
-font-family: "DM Sans", sans-serif;
+font-family: "Space Grotesk", sans-serif;
 font-size: 0.75rem;
-font-weight: 500;
+font-weight: 600;
 color: #fbbf24;
 white-space: nowrap;
 }
@@ -48,11 +48,19 @@ animation: none;
 .wip-badge {
 bottom: 12px;
 left: 12px;
-padding: 5px 12px;
-font-size: 0.62rem;
-gap: 6px;
-max-width: 60vw;
-white-space: normal;
-text-align: center;
+width: 34px;
+height: 34px;
+padding: 0;
+justify-content: center;
+border-radius: 50%;
+}
+
+.wip-text {
+display: none;
+}
+
+.wip-dot {
+animation: none;
+opacity: 1;
 }
 }

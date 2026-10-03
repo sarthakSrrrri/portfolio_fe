@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./page/homePage/home";
 import Projects from "./page/projects/Projects";
@@ -8,7 +8,19 @@ import VectorDbPlayground from "./page/projects/similarity_search/ss_vector_db";
 import ActivationFunctionsPage from "./page/projects/activation_functions/activation_functions";
 import HostedBadge from "./components/hostedBadge/hostedBadge";
 import WipBadge from "./components/wipBadge/wipBadge";
-import AiChatWidget from "./components/aiChatWidget/aiChatWidget";
+// import AiChatWidget from "./components/aiChatWidget/aiChatWidget";
+
+function GlobalBadges() {
+  const location = useLocation();
+  if (location.pathname === "/") return null;
+
+  return (
+    <>
+      <WipBadge />
+      <HostedBadge />
+    </>
+  );
+}
 
 function App() {
   return (
@@ -30,9 +42,8 @@ function App() {
         <Route path="/projects/activation-functions" element={<ActivationFunctionsPage />} />
       </Routes>
 
-      <WipBadge />
-      <HostedBadge />
-      <AiChatWidget />
+      <GlobalBadges />
+      {/* <AiChatWidget /> */}
     </BrowserRouter>
   );
 }

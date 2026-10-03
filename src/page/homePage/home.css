@@ -116,7 +116,10 @@ transform: translateY(-2px);
 }
 
 .home-topics-heading,
-.home-topics-index {
+.home-topics-index,
+.home-topics-mini-heading,
+.home-topics-cloudflare,
+.home-topics-contact {
 display: none;
 }
 
@@ -215,7 +218,9 @@ z-index: 55;
 opacity: 1;
 visibility: hidden;
 pointer-events: none;
-padding: 84px 20px 32px;
+padding: 72px 20px 32px;
+overflow-y: auto;
+overflow-x: hidden;
 border-radius: 0;
 border: none;
 border-left: 1px solid rgba(96, 165, 250, 0.25);
@@ -224,6 +229,7 @@ backdrop-filter: blur(20px);
 box-shadow: -24px 0 48px rgba(0, 0, 0, 0.65);
 transform: translateX(100%);
 transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.32s;
+font-family: "JetBrains Mono", monospace;
 }
 
 .home-topics-nav.is-open .home-topics-list {
@@ -232,11 +238,67 @@ pointer-events: auto;
 transform: translateX(0);
 }
 
+.home-topics-mini-heading {
+display: flex;
+align-items: center;
+gap: 8px;
+margin: 0 0 14px;
+padding: 0 12px;
+color: #fbbf24;
+font-family: "Orbitron", sans-serif;
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+}
+
+.home-topics-cloudflare {
+display: flex;
+align-items: center;
+gap: 14px;
+margin: 0 0 20px;
+padding: 16px 14px;
+border-radius: 16px;
+border: 1px solid rgba(96, 165, 250, 0.25);
+background: rgba(96, 165, 250, 0.08);
+}
+
+.home-topics-cloudflare-icon {
+width: 34px;
+height: 34px;
+flex-shrink: 0;
+color: #f6821f;
+filter: drop-shadow(0 0 10px rgba(246, 130, 31, 0.4));
+}
+
+.home-topics-cloudflare-text {
+display: flex;
+flex-direction: column;
+gap: 2px;
+min-width: 0;
+}
+
+.home-topics-cloudflare-title {
+color: #ffffff;
+font-family: "Orbitron", sans-serif;
+font-size: 0.85rem;
+font-weight: 700;
+}
+
+.home-topics-cloudflare-sub {
+color: rgba(226, 232, 240, 0.55);
+font-size: 0.68rem;
+font-weight: 500;
+white-space: normal;
+line-height: 1.3;
+}
+
 .home-topics-heading {
 display: block;
-margin: 0 0 18px;
+margin: 0 0 12px;
 padding: 0 12px;
 color: rgba(255, 255, 255, 0.4);
+font-family: "Orbitron", sans-serif;
 font-size: 0.72rem;
 font-weight: 700;
 letter-spacing: 0.18em;
@@ -280,8 +342,13 @@ letter-spacing: 0.04em;
 }
 
 .home-topics-label {
-font-size: 1.05rem;
+flex: 1;
+min-width: 0;
+font-size: 0.92rem;
 font-weight: 600;
+line-height: 1.3;
+word-break: break-word;
+white-space: normal;
 }
 
 .home-topics-nav .home-topics-link {
@@ -296,6 +363,114 @@ color: rgba(147, 197, 253, 0.85);
 content: '→';
 margin-left: 8px;
 opacity: 0.8;
+}
+
+.home-topics-contact {
+display: flex;
+flex-direction: column;
+align-self: stretch;
+width: 100%;
+flex-shrink: 0;
+gap: 10px;
+margin-top: auto;
+padding: 20px 0 0;
+border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-topics-contact .home-topics-heading {
+display: block;
+margin: 0 0 4px;
+}
+
+.home-topics-contact-card {
+display: flex;
+align-items: center;
+gap: 12px;
+width: 100%;
+min-width: 0;
+padding: 12px;
+border-radius: 14px;
+border: 1px solid rgba(255, 255, 255, 0.08);
+background: rgba(255, 255, 255, 0.03);
+color: rgba(226, 232, 240, 0.9);
+transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-topics-contact-card:active {
+transform: scale(0.98);
+}
+
+.home-topics-contact-icon {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 38px;
+height: 38px;
+flex-shrink: 0;
+border-radius: 50%;
+font-size: 1.05rem;
+}
+
+.home-topics-contact-text {
+display: flex;
+flex-direction: column;
+gap: 1px;
+min-width: 0;
+flex: 1;
+}
+
+.home-topics-contact-title {
+font-size: 0.85rem;
+font-weight: 700;
+color: #ffffff;
+}
+
+.home-topics-contact-sub {
+font-size: 0.72rem;
+color: rgba(226, 232, 240, 0.55);
+white-space: normal;
+word-break: break-word;
+}
+
+.home-topics-contact-arrow {
+flex-shrink: 0;
+opacity: 0.4;
+transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.home-topics-contact-card:hover .home-topics-contact-arrow {
+opacity: 1;
+transform: translateX(3px);
+}
+
+.contact-gmail .home-topics-contact-icon {
+background: rgba(234, 67, 53, 0.15);
+color: #ea4335;
+}
+
+.contact-gmail:hover {
+border-color: rgba(234, 67, 53, 0.35);
+background: rgba(234, 67, 53, 0.08);
+}
+
+.contact-phone .home-topics-contact-icon {
+background: rgba(96, 165, 250, 0.15);
+color: #60a5fa;
+}
+
+.contact-phone:hover {
+border-color: rgba(96, 165, 250, 0.35);
+background: rgba(96, 165, 250, 0.08);
+}
+
+.contact-whatsapp .home-topics-contact-icon {
+background: rgba(37, 211, 102, 0.15);
+color: #25d366;
+}
+
+.contact-whatsapp:hover {
+border-color: rgba(37, 211, 102, 0.35);
+background: rgba(37, 211, 102, 0.08);
 }
 }
 

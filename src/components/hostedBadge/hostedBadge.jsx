@@ -1,14 +1,13 @@
-import { SiCloudflare, SiReact } from 'react-icons/si'
+import { SiCloudflare } from 'react-icons/si'
 import './hostedBadge.css'
 
 function HostedBadge() {
   return (
-    <div className="hosted-badge">
+    <div className="hosted-badge" role="status" aria-label="Hosted on Cloudflare">
       <span className="hosted-item">
         <SiCloudflare className="hosted-icon hosted-icon-cf" aria-hidden="true" />
-        Hosted in Cloudflare
+        <span className="hosted-text">Hosted in Cloudflare</span>
       </span>
-      <span className="hosted-divider"></span>
     </div>
   )
 }
