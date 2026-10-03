@@ -8,6 +8,7 @@ import VectorDbPlayground from "./page/projects/similarity_search/ss_vector_db";
 import ActivationFunctionsPage from "./page/projects/activation_functions/activation_functions";
 import HostedBadge from "./components/hostedBadge/hostedBadge";
 import WipBadge from "./components/wipBadge/wipBadge";
+import TopicsNav from "./components/topicsNav/topicsNav";
 // import AiChatWidget from "./components/aiChatWidget/aiChatWidget";
 
 function GlobalBadges() {
@@ -25,6 +26,7 @@ function GlobalBadges() {
 function App() {
   return (
     <BrowserRouter>
+      <TopicsNav />
       <Routes>
         <Route path="/" element={<Home />} />
 
