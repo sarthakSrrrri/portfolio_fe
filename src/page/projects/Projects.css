@@ -18,9 +18,90 @@ color: #60a5fa;
 }
 
 .projects-title {
-margin-bottom: 48px;
+margin-bottom: 20px;
 font-size: clamp(2rem, 4vw, 2.8rem);
+font-family: "Space Grotesk", sans-serif;
 color: #f8fafc;
+}
+
+.projects-intro {
+max-width: 700px;
+margin-bottom: 40px;
+font-size: 1.02rem;
+line-height: 1.8;
+color: #94a3b8;
+}
+
+.projects-stats {
+position: relative;
+display: flex;
+margin-bottom: 56px;
+padding: 36px 0;
+border-top: 1px solid rgba(96, 165, 250, 0.15);
+border-bottom: 1px solid rgba(96, 165, 250, 0.15);
+}
+
+.projects-stat {
+position: relative;
+display: flex;
+flex: 1;
+flex-direction: column;
+align-items: flex-start;
+gap: 6px;
+padding: 0 32px;
+}
+
+.projects-stat:first-child {
+padding-left: 0;
+}
+
+.projects-stat-value {
+font-family: "Space Grotesk", sans-serif;
+font-size: clamp(2.4rem, 5vw, 3.6rem);
+font-weight: 700;
+line-height: 1;
+letter-spacing: -0.02em;
+background: linear-gradient(120deg, #ffffff 10%, #60a5fa 60%, #a78bfa 100%);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+.projects-stat-label {
+max-width: 180px;
+font-size: 0.8rem;
+font-weight: 600;
+letter-spacing: 0.02em;
+line-height: 1.4;
+color: #94a3b8;
+}
+
+.projects-stat-divider {
+position: absolute;
+top: 4px;
+right: 0;
+bottom: 4px;
+width: 1px;
+background: linear-gradient(180deg, transparent, rgba(96, 165, 250, 0.35), transparent);
+}
+
+@media (max-width: 760px) {
+.projects-stats {
+flex-direction: column;
+gap: 28px;
+}
+
+.projects-stat {
+padding: 0;
+}
+
+.projects-stat:first-child {
+padding-left: 0;
+}
+
+.projects-stat-divider {
+display: none;
+}
 }
 
 .projects-grid {
@@ -29,8 +110,80 @@ grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
 gap: 24px;
 }
 
+.projects-more {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 24px;
+margin-top: 56px;
+padding: 32px;
+border-radius: 20px;
+border: 1px solid rgba(96, 165, 250, 0.15);
+background: rgba(15, 23, 42, 0.5);
+}
+
+.projects-more-text {
+max-width: 560px;
+}
+
+.projects-more-text h2 {
+margin-bottom: 10px;
+font-size: 1.2rem;
+font-weight: 700;
+font-family: "Space Grotesk", sans-serif;
+color: #f8fafc;
+}
+
+.projects-more-text p {
+font-size: 0.92rem;
+line-height: 1.75;
+color: #94a3b8;
+}
+
+.projects-github-cta {
+display: inline-flex;
+align-items: center;
+flex-shrink: 0;
+gap: 10px;
+padding: 12px 20px;
+border-radius: 10px;
+background: linear-gradient(135deg, #24292f, #454c56);
+border: 1px solid rgba(255, 255, 255, 0.15);
+color: #ffffff;
+font-size: 0.9rem;
+font-weight: 600;
+white-space: nowrap;
+box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects-github-cta:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+.projects-github-cta-arrow {
+font-size: 0.75rem;
+opacity: 0.7;
+transition: transform 0.2s ease;
+}
+
+.projects-github-cta:hover .projects-github-cta-arrow {
+transform: translateX(3px);
+}
+
 @media (max-width: 600px) {
 .projects-page {
 padding: 80px 6%;
+}
+
+.projects-more {
+padding: 24px;
+}
+
+.projects-github-cta {
+width: 100%;
+justify-content: center;
 }
 }
